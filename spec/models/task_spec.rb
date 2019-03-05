@@ -33,6 +33,11 @@ RSpec.describe Task, type: :model do
       task = Task.create(deadline: Time.now + 1.hour)
       expect(task.overdue?).to eq(false)
     end
+
+    it 'should return true if deadline is earlier than now' do
+      task = Task.create(deadline: 1.hour.ago)
+      expect(task.overdue?).to eq(true)
+    end
   end
 
   describe '#increment_priority!' do
@@ -61,3 +66,4 @@ RSpec.describe Task, type: :model do
     end
 end
 
+# change of an attribute or return value of a method. 
